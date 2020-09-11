@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-/*
+
 
 @Database(entities = [EntityAmiibo::class], version = 1)
 abstract class DataBaseAmiibo : RoomDatabase(){
@@ -35,4 +35,4 @@ abstract class DataBaseAmiibo : RoomDatabase(){
             }
         }
     }
-}*/
+}

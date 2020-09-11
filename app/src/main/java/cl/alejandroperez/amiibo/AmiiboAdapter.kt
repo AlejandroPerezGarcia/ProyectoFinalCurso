@@ -1,5 +1,6 @@
 package cl.alejandroperez.amiibo
 
+  import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class AmiiboAdapter(private var amiiboDataset : MutableList<AmiiboX>) :
     override fun onBindViewHolder(holder: PostHolder, position: Int) {
         val post = amiiboDataset[position]
 
+        Log.d("Adapter", "${post.name}")
         holder.tail.text = post.tail
         holder.name.text = post.name
         Picasso.get().load(amiiboDataset.get(position).image).into(holder.image.imageViewImage)

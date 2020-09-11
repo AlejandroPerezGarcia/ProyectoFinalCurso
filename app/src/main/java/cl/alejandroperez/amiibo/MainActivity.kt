@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-            viewAdapter = AmiiboAdapter(amiiboList)
-            amiiboRecyclerView.adapter = viewAdapter
+        viewAdapter = AmiiboAdapter(amiiboList)
+        amiiboRecyclerView.adapter = viewAdapter
 
         loadApiData()
 
@@ -35,20 +35,17 @@ class MainActivity : AppCompatActivity() {
         val call = service.getAllAmiiboValues()
 
         call.enqueue(object : Callback<Amiibo> {
+
             override fun onResponse(call: Call<Amiibo>, response: Response<Amiibo>) {
 
                 response.body()?.amiibo?.map {
-                    Log.d("MAIN", " ${it.tail} - ${it.name} - ${it.image}  ")
-                 //   amiiboList// Agregamos cada post a la lista de post
-                    Log.d("TAG", "${it}")
-            }
+
+                    amiiboList.add(it)
+                }
+
                 viewAdapter.notifyDataSetChanged()
 
-                /*  Log.d("TAG", response.code().toString())
-                  Log.d("TAG2","${response.body().toString()}")
-                  Log.d("TAG3","${response}")
-                  Log.d("TAG4","${response.body()?.amiibo?.get(0)}" )*/
-                }
+            }
 
             override fun onFailure(call: Call<Amiibo>, t: Throwable) {
                 Log.d("MAIN", "Error: " + t)

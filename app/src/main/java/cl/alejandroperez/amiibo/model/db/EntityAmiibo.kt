@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-/*@Entity (tableName = "amiibo_table")
+@Entity (tableName = "amiibo_table")
 class EntityAmiibo (
 
     @PrimaryKey val tail : String,
@@ -15,7 +15,7 @@ class EntityAmiibo (
     val name : String,
     val type : String
 
-)*/
+)
 /*
 amiiboSeries	"Super Smash Bros."
 character	"Mario"

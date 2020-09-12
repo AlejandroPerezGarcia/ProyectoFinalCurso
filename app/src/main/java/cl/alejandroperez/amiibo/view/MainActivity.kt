@@ -1,10 +1,11 @@
-package cl.alejandroperez.amiibo
+package cl.alejandroperez.amiibo.view
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import cl.alejandroperez.amiibo.R
 import cl.alejandroperez.amiibo.model.api.Amiibo
 import cl.alejandroperez.amiibo.model.api.AmiiboX
 import cl.alejandroperez.amiibo.model.api.RetrofitClient

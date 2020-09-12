@@ -1,11 +1,12 @@
-package cl.alejandroperez.amiibo
+package cl.alejandroperez.amiibo.view
 
   import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cl.alejandroperez.amiibo.model.api.AmiiboX
+  import cl.alejandroperez.amiibo.R
+  import cl.alejandroperez.amiibo.model.api.AmiiboX
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_amiibo.view.*
 

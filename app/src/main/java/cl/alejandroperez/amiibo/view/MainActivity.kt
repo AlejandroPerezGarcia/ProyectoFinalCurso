@@ -14,9 +14,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Log.d("activiti" , "hola")
 
-
+           supportFragmentManager.beginTransaction()
+           .add(R.id.fragment,AmiiboListFragment.newInstance("",""), "vista")
+           .commit()
     }
-
-
 }
 

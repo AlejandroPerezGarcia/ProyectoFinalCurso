@@ -41,7 +41,6 @@ class AmiiboListFragment : Fragment() {
 
         @JvmStatic
         fun newInstance(param1: String, param2: String) = AmiiboListFragment()
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,8 +48,6 @@ class AmiiboListFragment : Fragment() {
         adapter = AmiiboAdapter(amiiboList)
         amiiboRecyclerView.adapter = adapter
         val amiiboViewModel : AmiiboViewModel by activityViewModels()
-
-
 
         amiiboViewModel.listAmiibo.observe(viewLifecycleOwner,Observer {
             Log.d("fragment" , "$it")
@@ -60,6 +57,8 @@ class AmiiboListFragment : Fragment() {
 
         adapter.amiiboSelect.observe(viewLifecycleOwner,Observer{
             Log.d("lifeCyclearOwner", " Amiibo selecionado $it")
+
+            amiiboViewModel.selecionado(it)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment,AmiiboDetailFragment.newInstance("",""), "detail")
                 .addToBackStack("detail")

@@ -14,7 +14,7 @@ abstract class DataBaseAmiibo : RoomDatabase() {
     companion object {
 
         @Volatile
-        private var INSTANCE: DataBaseAmiibo = null!!
+        private var INSTANCE: DataBaseAmiibo? = null
 
         fun getDatabase(context: Context): DataBaseAmiibo {
             val tempInstance =

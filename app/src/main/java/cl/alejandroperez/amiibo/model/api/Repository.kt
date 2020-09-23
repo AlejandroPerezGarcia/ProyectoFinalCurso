@@ -26,6 +26,7 @@ class Repository(context: Context) {
 
             override fun onResponse(call: Call<Amiibo>, response: Response<Amiibo>) {
                 //  response.body()?.amiibo
+                Log.d("api", "${response.body()?.amiibo}")
                 converter(response.body()?.amiibo)
             }
 
@@ -36,6 +37,7 @@ class Repository(context: Context) {
     }
 
     fun saveDatabase(listAmiiboEntity: List<EntityAmiibo>) {
+        Log.d("api+++", "entramos")
         CoroutineScope(Dispatchers.IO).launch {
             dataBaseAmiibo.getDaoAmiibo()
                 .insertAmiibo(listAmiiboEntity as MutableList<EntityAmiibo>)

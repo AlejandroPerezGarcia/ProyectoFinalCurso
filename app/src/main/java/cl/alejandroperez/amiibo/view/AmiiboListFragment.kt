@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import cl.alejandroperez.amiibo.R
 import cl.alejandroperez.amiibo.model.api.Amiibo
+import cl.alejandroperez.amiibo.model.api.Repository
 import cl.alejandroperez.amiibo.model.api.db.EntityAmiibo
 import cl.alejandroperez.amiibo.viewmodel.AmiiboViewModel
 import kotlinx.android.synthetic.main.fragment_amiibo_list.*
@@ -49,15 +50,18 @@ class AmiiboListFragment : Fragment() {
         amiiboRecyclerView.adapter = adapter
         val amiiboViewModel : AmiiboViewModel by activityViewModels()
 
+
+
         amiiboViewModel.listAmiibo.observe(viewLifecycleOwner,Observer {
             Log.d("fragment" , "$it")
             adapter.updateItems(it)
 
         })
+
         adapter.amiiboSelect.observe(viewLifecycleOwner,Observer{
             Log.d("lifeCyclearOwner", " Amiibo selecionado $it")
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container_fragments,AmiiboDetailFragment.newInstance("",""), "detail")
+                .replace(R.id.fragment,AmiiboDetailFragment.newInstance("",""), "detail")
                 .addToBackStack("detail")
                 .commit()
 

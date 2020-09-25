@@ -1,5 +1,6 @@
 package cl.alejandroperez.amiibo.view
 
+  import android.graphics.Typeface
   import android.util.Log
   import android.view.LayoutInflater
   import android.view.View
@@ -35,6 +36,8 @@ class AmiiboAdapter(private var amiiboDataset : MutableList<EntityAmiibo>) :
 
         Log.d("Adapter", "${post.name}")
         holder.tail.text = amiiboDataset.get(position).tail
+
+
         holder.name.text = amiiboDataset.get(position).name
        /* holder.tail.text = post.tail
         holder.name.text = post.name*/

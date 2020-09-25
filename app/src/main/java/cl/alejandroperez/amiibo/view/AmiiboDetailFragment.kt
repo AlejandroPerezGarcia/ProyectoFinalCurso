@@ -1,6 +1,7 @@
 package cl.alejandroperez.amiibo.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +35,10 @@ class AmiiboDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val orientation = activity?.resources?.configuration?.orientation
         // Inflate the layout for this fragment
+        Log.d ("orientation", "${orientation}")
+
         return inflater.inflate(R.layout.fragment_amiibo_detail, container, false)
     }
 

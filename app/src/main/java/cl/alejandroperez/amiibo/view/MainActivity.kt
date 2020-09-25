@@ -13,10 +13,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d("activiti" , "hola")
-
-           supportFragmentManager.beginTransaction()
-           .add(R.id.fragment,AmiiboListFragment.newInstance("",""), "vista")
-           .commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragment, AmiiboListFragment.newInstance("", ""), "vista")
+                .commit()
+        }else {
+            supportFragmentManager.findFragmentByTag("vista")
+        }
     }
 }
 

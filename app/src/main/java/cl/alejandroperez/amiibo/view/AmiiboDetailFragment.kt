@@ -1,11 +1,11 @@
 package cl.alejandroperez.amiibo.view
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import cl.alejandroperez.amiibo.R
@@ -14,21 +14,16 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_amiibo_detail.*
 import kotlinx.android.synthetic.main.list_amiibo.view.*
 
-
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+ class AmiiboDetailFragment : Fragment() {
 
-class AmiiboDetailFragment : Fragment() {
-
-    private val amiiboViewModel : AmiiboViewModel by activityViewModels()
-
-    private var param1: String? = null
-    private var param2: String? = null
+     private var favorito =  false
+    private val amiiboViewModel: AmiiboViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -37,8 +32,8 @@ class AmiiboDetailFragment : Fragment() {
     ): View? {
         val orientation = activity?.resources?.configuration?.orientation
         // Inflate the layout for this fragment
-        Log.d ("orientation", "${orientation}")
-
+        Log.d("orientation", "${orientation}")
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_amiibo_detail, container, false)
     }
 
@@ -64,10 +59,26 @@ class AmiiboDetailFragment : Fragment() {
             textViewCharacter.text = it.character
             textViewType.text = it.type
             Picasso.get().load(it.image).into(imageViewDetail)
-
-          //Picasso.get().load(amiiboDataset.get(position).image).into(holder.image.imageViewImage)
-
         })
     }
+
+     private fun setFavoriteIcon(menuItem: MenuItem){
+         val id = if (favorito) R.drawable.ic_baseline_wither_24;
+         else R.drawable.ic_baseline_favorite_whither_24;
+         menuItem.icon = context?.let { ContextCompat.getDrawable(it,id) }
+
+     }
+
+     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+         when (item.itemId){
+             R.id.favorito -> {
+                 favorito = !favorito
+                 setFavoriteIcon(item)
+             }
+
+         }
+         return super.onOptionsItemSelected(item)
+     }
+
 
 }

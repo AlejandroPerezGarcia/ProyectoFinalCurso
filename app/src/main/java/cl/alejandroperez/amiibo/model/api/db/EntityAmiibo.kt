@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity (tableName = "amiibo_table")
+@Entity(tableName = "amiibo_table")
 class EntityAmiibo(
 
     val amiiboSeries: String,

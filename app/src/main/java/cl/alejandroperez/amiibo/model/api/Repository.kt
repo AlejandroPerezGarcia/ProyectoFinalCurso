@@ -25,7 +25,6 @@ class Repository(context: Context) {
         call.enqueue(object : Callback<Amiibo> {
 
             override fun onResponse(call: Call<Amiibo>, response: Response<Amiibo>) {
-                //  response.body()?.amiibo
                 Log.d("api", "${response.body()?.amiibo}")
                 converter(response.body()?.amiibo)
             }
@@ -44,15 +43,25 @@ class Repository(context: Context) {
         }
     }
 
-      var listAmiibo1 = ArrayList<EntityAmiibo>()
+    var listAmiibo1 = ArrayList<EntityAmiibo>()
 
 
     private fun converter(amiibo: List<AmiiboX>?) {
 
         amiibo?.map {
-            listAmiibo1.add(EntityAmiibo(it.amiiboSeries,it.character,it.gameSeries,it.image,it.name,it.tail,it.type))
+            listAmiibo1.add(
+                EntityAmiibo(
+                    it.amiiboSeries,
+                    it.character,
+                    it.gameSeries,
+                    it.image,
+                    it.name,
+                    it.tail,
+                    it.type
+                )
+            )
         }
-        Log.d("repository convertet" , "Converter")
+        Log.d("repository convertet", "Converter")
         saveDatabase(listAmiibo1)
     }
 

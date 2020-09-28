@@ -23,7 +23,6 @@ class AmiiboListFragment : Fragment() {
     private lateinit var adapter: AmiiboAdapter
     private lateinit var AmiiboViewModel : AmiiboViewModel
 
-
       override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,7 +32,7 @@ class AmiiboListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_amiibo_list, container, false)
     }
 
@@ -52,7 +51,6 @@ class AmiiboListFragment : Fragment() {
         amiiboViewModel.listAmiibo.observe(viewLifecycleOwner,Observer {
             Log.d("fragment" , "$it")
             adapter.updateItems(it)
-
         })
 
         adapter.amiiboSelect.observe(viewLifecycleOwner,Observer{
@@ -63,8 +61,9 @@ class AmiiboListFragment : Fragment() {
                 .replace(R.id.fragment,AmiiboDetailFragment.newInstance("",""), "detail")
                 .addToBackStack("detail")
                 .commit()
-
         })
     }
+
+
 
 }

@@ -17,6 +17,7 @@ class AmiiboViewModel (application: Application) : AndroidViewModel(application)
         repository = Repository(application)
         repository.loadApiAmiibo()
       }
+
     val datoSelecionado = MutableLiveData<EntityAmiibo>()
 
     fun selecionado(amiibo: EntityAmiibo){

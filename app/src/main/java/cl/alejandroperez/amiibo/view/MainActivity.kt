@@ -25,16 +25,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentByTag("vista")
         }
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_detail,menu)
-
-        //setFavoriteIcon(menu?.findItem(R.id.favorito)!!)
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-
-
 
 }
 

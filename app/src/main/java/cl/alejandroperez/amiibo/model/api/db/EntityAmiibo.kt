@@ -13,6 +13,8 @@ class EntityAmiibo(
     val image: String,
     val name: String,
     @PrimaryKey val tail: String,
-    val type: String
+    val type: String,
+    var favorite : Boolean
+
 
 )

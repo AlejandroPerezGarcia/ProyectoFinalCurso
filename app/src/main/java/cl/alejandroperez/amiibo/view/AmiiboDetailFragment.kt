@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import cl.alejandroperez.amiibo.R
+import cl.alejandroperez.amiibo.model.api.db.EntityAmiibo
 import cl.alejandroperez.amiibo.viewmodel.AmiiboViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_amiibo_detail.*
@@ -19,6 +20,7 @@ private const val ARG_PARAM2 = "param2"
 
  class AmiiboDetailFragment : Fragment() {
 
+     lateinit var amiibo: EntityAmiibo
      private var favorito =  false
     private val amiiboViewModel: AmiiboViewModel by activityViewModels()
 
@@ -52,33 +54,35 @@ private const val ARG_PARAM2 = "param2"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         amiiboViewModel.datoSelecionado.observe(viewLifecycleOwner, Observer {
-
+            amiibo = it
             textViewName.text = it.name
             textViewGameSerie.text = it.gameSeries
             textViewTail.text = it.tail
             textViewCharacter.text = it.character
             textViewType.text = it.type
             Picasso.get().load(it.image).into(imageViewDetail)
+            textViewFavorito.text = it.favorite.toString()
+            if (it.favorite){
+                favorito = it.favorite
+                buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
+            }
+            buttonFavorito.setOnClickListener{
+
+              if (amiibo.favorite) {
+                  buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
+                  amiibo.favorite = false
+                  amiiboViewModel.actualizar(amiibo)
+
+
+              }else{
+                  buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_very_dissatisfied_24)
+                amiibo.favorite = true
+                amiiboViewModel.actualizar(amiibo)
+            }
+            }
+
         })
     }
 
-     private fun setFavoriteIcon(menuItem: MenuItem){
-         val id = if (favorito) R.drawable.ic_baseline_wither_24;
-         else R.drawable.ic_baseline_favorite_whither_24;
-         menuItem.icon = context?.let { ContextCompat.getDrawable(it,id) }
 
-     }
-
-     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-         when (item.itemId){
-             R.id.favorito -> {
-                 favorito = !favorito
-                 setFavoriteIcon(item)
-             }
-
-         }
-         return super.onOptionsItemSelected(item)
-     }
-
-
-}
+ }

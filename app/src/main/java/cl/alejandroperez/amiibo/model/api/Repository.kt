@@ -57,7 +57,8 @@ class Repository(context: Context) {
                     it.image,
                     it.name,
                     it.tail,
-                    it.type
+                    it.type,
+                    it.favorito
                 )
             )
         }
@@ -65,6 +66,12 @@ class Repository(context: Context) {
         saveDatabase(listAmiibo1)
     }
 
+    fun updateObjet(entityAmiibo: EntityAmiibo){
+
+               CoroutineScope(Dispatchers.IO).launch {
+            dataBaseAmiibo.getDaoAmiibo().updateAmiibo(entityAmiibo)
+        }
+    }
 }
 
 

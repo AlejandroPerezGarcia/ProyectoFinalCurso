@@ -24,4 +24,8 @@ class AmiiboViewModel (application: Application) : AndroidViewModel(application)
         datoSelecionado.value = amiibo
     }
 
+    fun actualizar(amiibo: EntityAmiibo){
+        repository.updateObjet(amiibo)
+    }
+
 }

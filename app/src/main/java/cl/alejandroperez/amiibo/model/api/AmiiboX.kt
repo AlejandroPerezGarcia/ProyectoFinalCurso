@@ -8,6 +8,6 @@ data class AmiiboX(
     val name: String,
     val tail: String,
     val type: String,
-     val favorito: Boolean
+    val favorito: Boolean
 )
 

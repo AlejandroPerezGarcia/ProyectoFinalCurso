@@ -12,6 +12,7 @@ import cl.alejandroperez.amiibo.R
 import cl.alejandroperez.amiibo.model.api.db.EntityAmiibo
 import cl.alejandroperez.amiibo.viewmodel.AmiiboViewModel
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_amiibo_detail.*
 import kotlinx.android.synthetic.main.list_amiibo.view.*
 
@@ -21,10 +22,11 @@ private const val ARG_PARAM2 = "param2"
  class AmiiboDetailFragment : Fragment() {
 
      lateinit var amiibo: EntityAmiibo
-     private var favorito =  false
+     private var favorito = false
     private val amiiboViewModel: AmiiboViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
     }
 
@@ -35,9 +37,12 @@ private const val ARG_PARAM2 = "param2"
         val orientation = activity?.resources?.configuration?.orientation
         // Inflate the layout for this fragment
         Log.d("orientation", "${orientation}")
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_amiibo_detail, container, false)
+
     }
+
+
 
     companion object {
 
@@ -51,38 +56,72 @@ private const val ARG_PARAM2 = "param2"
             }
     }
 
+     fun button() {
+
+         buttonFavorito.setOnClickListener{
+
+             if (amiibo.favorite) {
+
+                 amiibo.favorite = false
+                 buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
+                 amiiboViewModel.actualizar(amiibo)
+                 Log.d("favoirito2" , "$favorito")
+
+             }else{
+                 amiibo.favorite = true
+                 buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_very_dissatisfied_24)
+                 amiiboViewModel.actualizar(amiibo)
+                 Log.d("favoirito3" , "$favorito")
+
+             }
+
+         }
+     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         amiiboViewModel.datoSelecionado.observe(viewLifecycleOwner, Observer {
+
             amiibo = it
             textViewName.text = it.name
             textViewGameSerie.text = it.gameSeries
             textViewTail.text = it.tail
             textViewCharacter.text = it.character
-            textViewType.text = it.type
+            textViewType.text = it.type 
             Picasso.get().load(it.image).into(imageViewDetail)
-            textViewFavorito.text = it.favorite.toString()
-            if (it.favorite){
-                favorito = it.favorite
-                buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
+
+         // textViewFavorito.text = it.favorite.toString()
+            Log.d("favoirito0" , "$favorito")
+          if (it.favorite){
+              favorito = it.favorite
+              buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
+              Log.d("favoirito1" , "$favorito")
             }
-            buttonFavorito.setOnClickListener{
-
+           button()
+          /*  buttonFavorito.setOnClickListener{
+                
               if (amiibo.favorite) {
-                  buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
-                  amiibo.favorite = false
-                  amiiboViewModel.actualizar(amiibo)
 
+                  amiibo.favorite = false
+                  buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
+                  amiiboViewModel.actualizar(amiibo)
+                  Log.d("favoirito2" , "$favorito")
 
               }else{
+                  amiibo.favorite = true
                   buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_very_dissatisfied_24)
-                amiibo.favorite = true
-                amiiboViewModel.actualizar(amiibo)
-            }
+                  amiiboViewModel.actualizar(amiibo)
+                  Log.d("favoirito3" , "$favorito")
+
             }
 
+           }
+*/
+
         })
+
     }
+
 
 
  }

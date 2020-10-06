@@ -87,7 +87,7 @@ private const val ARG_PARAM2 = "param2"
             textViewGameSerie.text = it.gameSeries
             textViewTail.text = it.tail
             textViewCharacter.text = it.character
-            textViewType.text = it.type 
+            textViewType.text = it.type
             Picasso.get().load(it.image).into(imageViewDetail)
 
          // textViewFavorito.text = it.favorite.toString()

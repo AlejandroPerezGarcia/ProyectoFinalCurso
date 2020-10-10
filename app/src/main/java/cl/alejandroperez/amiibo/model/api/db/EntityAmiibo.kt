@@ -14,7 +14,7 @@ class EntityAmiibo(
     val name: String,
     @PrimaryKey val tail: String,
     val type: String,
-    var favorite : Boolean = false
+    var favorite : Boolean
 
 
 )

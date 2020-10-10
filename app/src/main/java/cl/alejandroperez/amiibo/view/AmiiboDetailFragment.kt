@@ -23,7 +23,7 @@ private const val ARG_PARAM2 = "param2"
 
      lateinit var amiibo: EntityAmiibo
      private var favorito = false
-    private val amiiboViewModel: AmiiboViewModel by activityViewModels()
+     private val amiiboViewModel: AmiiboViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -96,8 +96,10 @@ private const val ARG_PARAM2 = "param2"
               favorito = it.favorite
               buttonFavorito.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
               Log.d("favoirito1" , "$favorito")
+
             }
-           button()
+            button()
+
           /*  buttonFavorito.setOnClickListener{
                 
               if (amiibo.favorite) {

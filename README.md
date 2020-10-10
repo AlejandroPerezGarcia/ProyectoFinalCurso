@@ -35,7 +35,6 @@
 - Habilitar Busqueda de Amiibo por nombre , Serie 
 
 
-## Desarrollado
-
-- Alejandro Pérez García 
+## Desarrollado por Alejandro Pérez García
+  
 
